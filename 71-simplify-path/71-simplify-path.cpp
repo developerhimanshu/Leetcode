@@ -3,7 +3,7 @@ public:
     string simplifyPath(string path) {
         int n = path.length();
         stack<string>st;
-        string ans = "/";
+        string ans;
         for(int i = 0; i<path.length(); i++){
             if(path[i]=='/')continue;
             else{
@@ -20,18 +20,11 @@ public:
                     st.push(temp);
             }
         }
-       vector<string>routes;
+
        while(st.size()){
-           routes.push_back(st.top());
+           ans= "/"+st.top()+ans;
            st.pop();
        }
-       reverse(routes.begin(), routes.end());
-       for(int i = 0; i<routes.size(); i++){
-            if(i==routes.size()-1)
-                ans+=(routes[i]);
-            else
-                ans+=(routes[i]+"/");
-       }
-       return ans;
+       return ans.length()?ans:"/";
     }
 };
